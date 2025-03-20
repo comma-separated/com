@@ -2,36 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>comma separated</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            margin: 0;
-            height: 100vh;
-            height: 100dvh;
-            display: flex;
-        }
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    
+    <!-- iOS Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        .comma-container {
-            width: 100%;
+    <style>
+        :root {
+            --vh: 1vh;
+        }
+        
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            height: calc(var(--vh, 1vh) * 100);
+            overflow: hidden;
             display: flex;
             justify-content: flex-end;
             align-items: center;
             padding-right: 15%;
-            box-sizing: border-box;
         }
-
-        .comma {
+        
+        .content {
             font-size: min(50vw, 200px);
             line-height: 1;
         }
     </style>
 </head>
 <body>
-    <div class="comma-container">
-        <span class="comma">,</span>
-    </div>
+    <div class="content">,</div>
+
+    <script>
+        // PWA Installation
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+
+        // Fullscreen Viewport Hack
+        function updateViewport() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        window.addEventListener('resize', updateViewport);
+        updateViewport();
+
+        // iOS Fullscreen Init
+        window.addEventListener('load', function() {
+            setTimeout(() => window.scrollTo(0, 1), 100);
+        });
+
+        // Prevent Zoom
+        document.addEventListener('gesturestart', e => e.preventDefault());
+        document.addEventListener('dblclick', e => e.preventDefault());
+    </script>
 </body>
 </html>
