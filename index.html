@@ -28,11 +28,18 @@
             justify-content: flex-end;
             align-items: center;
             padding-right: 15%;
+
+            /* Disable text selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         
         .content {
             font-size: min(50vw, 200px);
             line-height: 1;
+            pointer-events: none; /* Disable interaction */
         }
     </style>
 </head>
