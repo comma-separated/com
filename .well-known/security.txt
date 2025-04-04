@@ -1,0 +1,6 @@
+# security.txt
+# https://comma-separated.com/.well-known/security.txt
+
+Contact: mailto:security@yourdomain.com
+Preferred-Languages: en, ru
+Canonical: https://comma-separated.com/.well-known/security.txt
